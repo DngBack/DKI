@@ -1,0 +1,65 @@
+{
+  "config": {
+    "model_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "demo_pdf": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.pdf",
+    "demo_json": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.json",
+    "query_pdf": "data/test/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_test_1.pdf",
+    "query_gt_json": "",
+    "shots": 1,
+    "max_new_tokens": 512,
+    "max_pixels": 401408,
+    "top_n_list": "4",
+    "beta_list": "0.1",
+    "layer_spec_list": "mid",
+    "output": "draft/test_dki/results/sweep_smoke.json"
+  },
+  "naive": {
+    "elapsed_sec": 25.463687419891357,
+    "schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 0,
+      "leaf_presence_rate": 0.0,
+      "leaf_non_empty_in_aligned": 0,
+      "leaf_non_empty_rate": 0.0
+    },
+    "value_match_metrics": null
+  },
+  "best_trial": {
+    "top_n": 4,
+    "beta": 0.1,
+    "layers": [
+      18
+    ],
+    "elapsed_sec": 24.93932819366455,
+    "wall_sec": 25.7583167552948,
+    "schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 0,
+      "leaf_presence_rate": 0.0,
+      "leaf_non_empty_in_aligned": 0,
+      "leaf_non_empty_rate": 0.0
+    },
+    "value_match_metrics": null,
+    "parsed_json_exists": true
+  },
+  "trials": [
+    {
+      "top_n": 4,
+      "beta": 0.1,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 24.93932819366455,
+      "wall_sec": 25.7583167552948,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    }
+  ]
+}

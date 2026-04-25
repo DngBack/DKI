@@ -1,0 +1,236 @@
+{
+  "config": {
+    "model_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "shots": 1,
+    "demo_pdf": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.pdf",
+    "demo_json": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.json",
+    "query_pdf": "data/test/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_test_1.pdf",
+    "query_gt_json": "",
+    "target_layers": [
+      14,
+      18,
+      22
+    ],
+    "top_n": 12,
+    "beta": 0.2,
+    "max_new_tokens": 768,
+    "max_pixels": 401408
+  },
+  "naive": {
+    "elapsed_sec": 37.76350951194763,
+    "output": "{\n  \"Title\": \"GIẤY GỬI TIỀN TIẾT KIỆM\",\n  \"FreeText1\": \"Liên 1/2 dành cho Ngân hàng\",\n  \"Ngày (Date)\": \"05-01-2026\",\n  \"THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG\": {\n    \"Tên khách hàng\": \"NGUYEN HONG SON\",\n    \"CMND/CCCD/HC\": \"001091034354\",\n    \"Ngày cấp\": \"10/10/2021\",\n    \"CIF\": \"11963933\",\n    \"Số tiền gửi\": \"5,000,000,000\",\n    \"Nơi cấp\": \"CUC CSQLHCVTTXH\",\n    \"Loại tiền\": \"VND\",\n    \"Số tiền bằng chữ\": \"Năm Tỷ đồng chan\",\n    \"Loại hình sản phẩm\": \"FD.DEPOSIT.AP.CK24M\",\n    \"Kỳ hạn\": \"6M\",\n    \"Định kỳ lĩnh lãi\": \"CUOI KY\",\n    \"Phương thức gửi tiền\": \"CHUYEN KHOAN\",\n    \"Tài khoản ghi nợ\": \"999919919999\",\n    \"Tài khoản nhận lãi\": \"\",\n    \"Phương thức quay vòng\": \"QUAY VONG GOC VA LAI\"\n  },\n  \"BẢNG KẺ TIỀN MẶT (CASH LIST)\": {\n    \"Table1\": [\n      {\n        \"Mệnh giá (Denomination)\": \"\",\n        \"Số tờ (Quantity)\": \"\",\n        \"Thành tiền (Amount)\": \"\"\n      }\n    ],\n    \"Tổng cộng (Total)\": \"\"\n  },\n  \"FreeText2\": \"Tôi xác nhận đã đọc, hiểu và cam đoan các thông tin trên là đúng theo yêu cầu của tôi\\nCam kết tái tục theo sản phẩm ban hành\",\n  \"Người gửi tiền (ký, ghi rõ họ tên)\": \"Nguyễn Hồng Sơn\",\n  \"PHẦN DÀNH CHO NGÂN HÀNG\": {\n    \"Số bút toán\": \"AAACT26005XTHQDFPV\",\n    \"Số seri\": \"FDAB901345\",\n    \"Ngày mở\": \"05/01/2026\",\n    \"Salecode\": \"0029224\",\n    \"Company\": \"VN0010106\",\n    \"Lãi suất\": \"8(+2.20)\",\n    \"Ngày đến hạn\": \"06/07/2026\",\n    \"Table2\": [\n      {\n        \"Số tài khoản\": \"999919919999\",\n        \"Tên tài khoản\": \"NGUYEN HONG SON\",\n        \"Ghi nợ\": \"5,000,000,000\",\n        \"Ghi có\": \"\",\n        \"Loại tiền\": \"VND\"\n      },\n      {\n        \"Số tài khoản\": \"608585039117\",\n        \"Tên tài khoản\": \"NGUYEN HONG SON\",\n        \"Ghi nợ\": \"\",\n        \"Ghi có\": \"5,000,000,000\",\n        \"Loại tiền\": \"VND\"\n      }\n    ]\n  },\n  \"G",
+    "parsed_json": {
+      "Tên khách hàng": "NGUYEN HONG SON",
+      "CMND/CCCD/HC": "001091034354",
+      "Ngày cấp": "10/10/2021",
+      "CIF": "11963933",
+      "Số tiền gửi": "5,000,000,000",
+      "Nơi cấp": "CUC CSQLHCVTTXH",
+      "Loại tiền": "VND",
+      "Số tiền bằng chữ": "Năm Tỷ đồng chan",
+      "Loại hình sản phẩm": "FD.DEPOSIT.AP.CK24M",
+      "Kỳ hạn": "6M",
+      "Định kỳ lĩnh lãi": "CUOI KY",
+      "Phương thức gửi tiền": "CHUYEN KHOAN",
+      "Tài khoản ghi nợ": "999919919999",
+      "Tài khoản nhận lãi": "",
+      "Phương thức quay vòng": "QUAY VONG GOC VA LAI"
+    },
+    "aligned_json": {
+      "Title": "",
+      "FreeText1": "",
+      "Ngày (Date)": "",
+      "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+        "Tên khách hàng": "",
+        "CMND/CCCD/HC": "",
+        "Ngày cấp": "",
+        "CIF": "",
+        "Số tiền gửi": "",
+        "Nơi cấp": "",
+        "Loại tiền": "",
+        "Số tiền bằng chữ": "",
+        "Loại hình sản phẩm": "",
+        "Kỳ hạn": "",
+        "Định kỳ lĩnh lãi": "",
+        "Phương thức gửi tiền": "",
+        "Tài khoản ghi nợ": "",
+        "Tài khoản nhận lãi": "",
+        "Phương thức quay vòng": ""
+      },
+      "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+        "Table1": [
+          {
+            "Mệnh giá (Denomination)": "",
+            "Số tờ (Quantity)": "",
+            "Thành tiền (Amount)": ""
+          }
+        ],
+        "Tổng cộng (Total)": ""
+      },
+      "FreeText2": "",
+      "Người gửi tiền (ký, ghi rõ họ tên)": "",
+      "PHẦN DÀNH CHO NGÂN HÀNG": {
+        "Số bút toán": "",
+        "Số seri": "",
+        "Ngày mở": "",
+        "Salecode": "",
+        "Company": "",
+        "Lãi suất": "",
+        "Ngày đến hạn": "",
+        "Table2": [
+          {
+            "Số tài khoản": "",
+            "Tên tài khoản": "",
+            "Ghi nợ": "",
+            "Ghi có": "",
+            "Loại tiền": ""
+          }
+        ]
+      },
+      "Giao dịch viên": "",
+      "Kiểm soát viên": ""
+    },
+    "schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 0,
+      "leaf_presence_rate": 0.0,
+      "leaf_non_empty_in_aligned": 0,
+      "leaf_non_empty_rate": 0.0
+    },
+    "value_match_metrics": null
+  },
+  "dki_kv": {
+    "elapsed_sec": 37.38799452781677,
+    "output": "{\n  \"Title\": \"GIẤY TIỀN TIẾT KIỆM\",\n  \"FreeText1\": \"\",\n  \"Ngày (Date)\": \"05-01-2026\",\n  \"THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG\": {\n    \"Tên khách hàng\": \"NGUYEN HONG SON\",\n    \"CMND/CCCD/HC\": \"11963933\",\n    \"Ngày cấp\": \"10/10/2021\",\n    \"CIF\": \"\",\n    \"Số tiền gửi\": \"5.000.000.000\",\n    \"Nơi cấp\": \"Namy Ty dong chan\",\n    \"Loại tiền\": \"VND\",\n    \"Số tiền bằng chữ\": \"\",\n    \"Loại hình sản phẩm\": \"FD DEPOSIT AP CK2M\",\n    \"Kỳ hạn\": \"6M\",\n    \"Định kỳ lĩnh lãi\": \"6M\",\n    \"Phương thức gửi tiền\": \"CHUYEN KHOAN\",\n    \"Tài khoản ghi nợ\": \"999919919999\",\n    \"Tài khoản nhận lãi\": \"\",\n    \"Phương thức quay vòng\": \"\"\n  },\n  \"BẢNG KẺ TIỀN MẶT (CASH LIST)\": {\n    \"Table1\": [\n      {\n        \"Mệnh giá (Denomination)\": \"5.000.000.000\",\n        \"Số tờ (Quantity)\": \"1\",\n        \"Thành tiền (Amount)\": \"5.000.000.000\"\n      }\n    ],\n    \"Tổng cộng (Total)\": \"5.000.000.000\"\n  },\n  \"FreeText2\": \"\",\n  \"Người gửi tiền (ký, ghi rõ họ tên)\": \"Nguyen Hong Son\",\n  \"PHẦN DÀNH CHO NGÂN HÀNG\": {\n    \"Số bút toán\": \"00012026\",\n    \"Số seri\": \"FADBA91345\",\n    \"Ngày mở\": \"05/01/2026\",\n    \"Salecode\": \"VN0010106\",\n    \"Company\": \"VN0010106\",\n    \"Lãi suất\": \"8.3%/20\",\n    \"Ngày đến hạn\": \"06/01/2026\",\n    \"Table2\": [\n      {\n        \"Số tài khoản\": \"999919919999\",\n        \"Tên tài khoản\": \"NGUYEN HONG SON\",\n        \"Ghi nợ\": \"5.000.000.000\",\n        \"Ghi có\": \"VND\",\n        \"Loại tiền\": \"VND\"\n      },\n      {\n        \"Số tài khoản\": \"60585039117\",\n        \"Tên tài khoản\": \"NGUYEN HONG SON\",\n        \"Ghi nợ\": \"5.000.000.000\",\n        \"Ghi có\": \"VND\",\n        \"Loại tiền\": \"VND\"\n      }\n    ]\n  },\n  \"Giao dịch viên\": \"Nguyen Thi Luong Huan\",\n  \"Kiểm soát viên\": \"Vo Thi Phuong Chai\"\n}",
+    "parsed_json": {
+      "Title": "GIẤY TIỀN TIẾT KIỆM",
+      "FreeText1": "",
+      "Ngày (Date)": "05-01-2026",
+      "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+        "Tên khách hàng": "NGUYEN HONG SON",
+        "CMND/CCCD/HC": "11963933",
+        "Ngày cấp": "10/10/2021",
+        "CIF": "",
+        "Số tiền gửi": "5.000.000.000",
+        "Nơi cấp": "Namy Ty dong chan",
+        "Loại tiền": "VND",
+        "Số tiền bằng chữ": "",
+        "Loại hình sản phẩm": "FD DEPOSIT AP CK2M",
+        "Kỳ hạn": "6M",
+        "Định kỳ lĩnh lãi": "6M",
+        "Phương thức gửi tiền": "CHUYEN KHOAN",
+        "Tài khoản ghi nợ": "999919919999",
+        "Tài khoản nhận lãi": "",
+        "Phương thức quay vòng": ""
+      },
+      "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+        "Table1": [
+          {
+            "Mệnh giá (Denomination)": "5.000.000.000",
+            "Số tờ (Quantity)": "1",
+            "Thành tiền (Amount)": "5.000.000.000"
+          }
+        ],
+        "Tổng cộng (Total)": "5.000.000.000"
+      },
+      "FreeText2": "",
+      "Người gửi tiền (ký, ghi rõ họ tên)": "Nguyen Hong Son",
+      "PHẦN DÀNH CHO NGÂN HÀNG": {
+        "Số bút toán": "00012026",
+        "Số seri": "FADBA91345",
+        "Ngày mở": "05/01/2026",
+        "Salecode": "VN0010106",
+        "Company": "VN0010106",
+        "Lãi suất": "8.3%/20",
+        "Ngày đến hạn": "06/01/2026",
+        "Table2": [
+          {
+            "Số tài khoản": "999919919999",
+            "Tên tài khoản": "NGUYEN HONG SON",
+            "Ghi nợ": "5.000.000.000",
+            "Ghi có": "VND",
+            "Loại tiền": "VND"
+          },
+          {
+            "Số tài khoản": "60585039117",
+            "Tên tài khoản": "NGUYEN HONG SON",
+            "Ghi nợ": "5.000.000.000",
+            "Ghi có": "VND",
+            "Loại tiền": "VND"
+          }
+        ]
+      },
+      "Giao dịch viên": "Nguyen Thi Luong Huan",
+      "Kiểm soát viên": "Vo Thi Phuong Chai"
+    },
+    "aligned_json": {
+      "Title": "GIẤY TIỀN TIẾT KIỆM",
+      "FreeText1": "",
+      "Ngày (Date)": "05-01-2026",
+      "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+        "Tên khách hàng": "NGUYEN HONG SON",
+        "CMND/CCCD/HC": "11963933",
+        "Ngày cấp": "10/10/2021",
+        "CIF": "",
+        "Số tiền gửi": "5.000.000.000",
+        "Nơi cấp": "Namy Ty dong chan",
+        "Loại tiền": "VND",
+        "Số tiền bằng chữ": "",
+        "Loại hình sản phẩm": "FD DEPOSIT AP CK2M",
+        "Kỳ hạn": "6M",
+        "Định kỳ lĩnh lãi": "6M",
+        "Phương thức gửi tiền": "CHUYEN KHOAN",
+        "Tài khoản ghi nợ": "999919919999",
+        "Tài khoản nhận lãi": "",
+        "Phương thức quay vòng": ""
+      },
+      "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+        "Table1": [
+          {
+            "Mệnh giá (Denomination)": "5.000.000.000",
+            "Số tờ (Quantity)": "1",
+            "Thành tiền (Amount)": "5.000.000.000"
+          }
+        ],
+        "Tổng cộng (Total)": "5.000.000.000"
+      },
+      "FreeText2": "",
+      "Người gửi tiền (ký, ghi rõ họ tên)": "Nguyen Hong Son",
+      "PHẦN DÀNH CHO NGÂN HÀNG": {
+        "Số bút toán": "00012026",
+        "Số seri": "FADBA91345",
+        "Ngày mở": "05/01/2026",
+        "Salecode": "VN0010106",
+        "Company": "VN0010106",
+        "Lãi suất": "8.3%/20",
+        "Ngày đến hạn": "06/01/2026",
+        "Table2": [
+          {
+            "Số tài khoản": "999919919999",
+            "Tên tài khoản": "NGUYEN HONG SON",
+            "Ghi nợ": "5.000.000.000",
+            "Ghi có": "VND",
+            "Loại tiền": "VND"
+          },
+          {
+            "Số tài khoản": "60585039117",
+            "Tên tài khoản": "NGUYEN HONG SON",
+            "Ghi nợ": "5.000.000.000",
+            "Ghi có": "VND",
+            "Loại tiền": "VND"
+          }
+        ]
+      },
+      "Giao dịch viên": "Nguyen Thi Luong Huan",
+      "Kiểm soát viên": "Vo Thi Phuong Chai"
+    },
+    "schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 38,
+      "leaf_presence_rate": 1.0,
+      "leaf_non_empty_in_aligned": 32,
+      "leaf_non_empty_rate": 0.8421052631578947
+    },
+    "value_match_metrics": null
+  }
+}

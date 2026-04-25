@@ -1,0 +1,8 @@
+torch
+torchvision
+accelerate
+pillow
+tqdm
+transformers @ git+https://github.com/huggingface/transformers
+qwen-vl-utils
+pypdfium2

@@ -1,0 +1,745 @@
+{
+  "config": {
+    "model_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "demo_pdf": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.pdf",
+    "demo_json": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.json",
+    "query_pdf": "data/test/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_test_1.pdf",
+    "query_gt_json": "",
+    "shots": 1,
+    "max_new_tokens": 768,
+    "max_pixels": 401408,
+    "top_n_list": "4,8,12",
+    "beta_list": "0.05,0.1,0.2,0.3",
+    "layer_spec_list": "mid,triad,16|20|24",
+    "output": "draft/test_dki/results/sweep_results.json"
+  },
+  "naive": {
+    "elapsed_sec": 37.011754274368286,
+    "schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 0,
+      "leaf_presence_rate": 0.0,
+      "leaf_non_empty_in_aligned": 0,
+      "leaf_non_empty_rate": 0.0
+    },
+    "value_match_metrics": null
+  },
+  "best_trial": {
+    "top_n": 12,
+    "beta": 0.2,
+    "layers": [
+      14,
+      18,
+      22
+    ],
+    "elapsed_sec": 36.52097821235657,
+    "wall_sec": 37.17447209358215,
+    "schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 38,
+      "leaf_presence_rate": 1.0,
+      "leaf_non_empty_in_aligned": 32,
+      "leaf_non_empty_rate": 0.8421052631578947
+    },
+    "value_match_metrics": null,
+    "parsed_json_exists": true
+  },
+  "trials": [
+    {
+      "top_n": 12,
+      "beta": 0.2,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 36.52097821235657,
+      "wall_sec": 37.17447209358215,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 32,
+        "leaf_non_empty_rate": 0.8421052631578947
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.05,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 36.79724597930908,
+      "wall_sec": 37.454885959625244,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 32,
+        "leaf_non_empty_rate": 0.8421052631578947
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.1,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 36.92868947982788,
+      "wall_sec": 37.78357529640198,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 32,
+        "leaf_non_empty_rate": 0.8421052631578947
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.2,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 35.85350847244263,
+      "wall_sec": 36.59848499298096,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 37,
+        "leaf_presence_rate": 0.9736842105263158,
+        "leaf_non_empty_in_aligned": 30,
+        "leaf_non_empty_rate": 0.7894736842105263
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.05,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 37.19406270980835,
+      "wall_sec": 37.88905668258667,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 37,
+        "leaf_presence_rate": 0.9736842105263158,
+        "leaf_non_empty_in_aligned": 30,
+        "leaf_non_empty_rate": 0.7894736842105263
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.1,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 35.69092321395874,
+      "wall_sec": 36.35225319862366,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 29,
+        "leaf_non_empty_rate": 0.7631578947368421
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.3,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 35.96283936500549,
+      "wall_sec": 36.61463260650635,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 29,
+        "leaf_non_empty_rate": 0.7631578947368421
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.2,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 35.97989368438721,
+      "wall_sec": 36.79412341117859,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 29,
+        "leaf_non_empty_rate": 0.7631578947368421
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.05,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 36.633179664611816,
+      "wall_sec": 37.307045459747314,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 29,
+        "leaf_non_empty_rate": 0.7631578947368421
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.3,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 33.01862168312073,
+      "wall_sec": 33.80245065689087,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 28,
+        "leaf_non_empty_rate": 0.7368421052631579
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.1,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 33.26045846939087,
+      "wall_sec": 34.05515933036804,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 28,
+        "leaf_non_empty_rate": 0.7368421052631579
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.2,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 33.45212435722351,
+      "wall_sec": 34.11489939689636,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 28,
+        "leaf_non_empty_rate": 0.7368421052631579
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.2,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 33.48958873748779,
+      "wall_sec": 34.14119505882263,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 28,
+        "leaf_non_empty_rate": 0.7368421052631579
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.05,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 33.529433488845825,
+      "wall_sec": 34.37531805038452,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 28,
+        "leaf_non_empty_rate": 0.7368421052631579
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.05,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 33.53232717514038,
+      "wall_sec": 34.27073788642883,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 28,
+        "leaf_non_empty_rate": 0.7368421052631579
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.1,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 33.65822124481201,
+      "wall_sec": 34.35131645202637,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 28,
+        "leaf_non_empty_rate": 0.7368421052631579
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.05,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 32.42582559585571,
+      "wall_sec": 33.211522340774536,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 27,
+        "leaf_non_empty_rate": 0.7105263157894737
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.3,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 32.50583457946777,
+      "wall_sec": 33.415316104888916,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 27,
+        "leaf_non_empty_rate": 0.7105263157894737
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.1,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 32.669177770614624,
+      "wall_sec": 33.39100670814514,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 27,
+        "leaf_non_empty_rate": 0.7105263157894737
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.3,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 35.22330379486084,
+      "wall_sec": 35.87164258956909,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 27,
+        "leaf_non_empty_rate": 0.7105263157894737
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.3,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 35.592198610305786,
+      "wall_sec": 36.25717067718506,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 27,
+        "leaf_non_empty_rate": 0.7105263157894737
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.1,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 31.717137575149536,
+      "wall_sec": 32.39525055885315,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 23,
+        "leaf_non_empty_rate": 0.6052631578947368
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.2,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 31.183220863342285,
+      "wall_sec": 31.925353050231934,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 35,
+        "leaf_presence_rate": 0.9210526315789473,
+        "leaf_non_empty_in_aligned": 22,
+        "leaf_non_empty_rate": 0.5789473684210527
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.2,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.440536975860596,
+      "wall_sec": 37.18631076812744,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.1,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.60780096054077,
+      "wall_sec": 37.25151324272156,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.3,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.642114877700806,
+      "wall_sec": 37.32528042793274,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.2,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.642457008361816,
+      "wall_sec": 37.29773950576782,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.3,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 36.81540012359619,
+      "wall_sec": 37.754146337509155,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.1,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.87640857696533,
+      "wall_sec": 37.54501175880432,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.05,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.88645815849304,
+      "wall_sec": 37.60696363449097,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.05,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.902923583984375,
+      "wall_sec": 37.57313132286072,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.3,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.95913481712341,
+      "wall_sec": 37.63363981246948,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.2,
+      "layers": [
+        18
+      ],
+      "elapsed_sec": 36.984986782073975,
+      "wall_sec": 37.748937129974365,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 4,
+      "beta": 0.1,
+      "layers": [
+        14,
+        18,
+        22
+      ],
+      "elapsed_sec": 36.98591732978821,
+      "wall_sec": 37.64812254905701,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 8,
+      "beta": 0.3,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 37.271379709243774,
+      "wall_sec": 37.984039545059204,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    },
+    {
+      "top_n": 12,
+      "beta": 0.05,
+      "layers": [
+        16,
+        20,
+        24
+      ],
+      "elapsed_sec": 37.41246747970581,
+      "wall_sec": 38.150840282440186,
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 0,
+        "leaf_presence_rate": 0.0,
+        "leaf_non_empty_in_aligned": 0,
+        "leaf_non_empty_rate": 0.0
+      },
+      "value_match_metrics": null,
+      "parsed_json_exists": true
+    }
+  ]
+}
