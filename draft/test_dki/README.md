@@ -24,6 +24,27 @@ From repo root:
 python draft/test_dki/src/run_compare.py --shots 1
 ```
 
+Run DynaOCR-Prefix style cacheable prefix test:
+
+```bash
+python draft/test_dki/src/run_dyna_prefix_compare.py \
+  --shots 1 \
+  --target-layers mid \
+  --top-n 32 \
+  --top-n-text 16 \
+  --beta 1.0 \
+  --prefix-cache draft/test_dki/results/prefix_cache.pt \
+  --output draft/test_dki/results/compare_dyna_prefix.json
+```
+
+Reuse cached prefix for fast domain re-run:
+
+```bash
+python draft/test_dki/src/run_dyna_prefix_compare.py \
+  --shots 1 \
+  --prefix-cache draft/test_dki/results/prefix_cache.pt
+```
+
 Optional:
 
 ```bash
