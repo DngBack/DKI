@@ -180,3 +180,43 @@ This is still useful for paper direction as:
    - `compressor_mode=separate`
 4. Add field-level exact match and CER-style diagnostics for high-value OCR fields.
 
+
+## 9) Feedback-Driven Fixes (2026-04-26)
+
+Implemented fixes in `draft/test_dlpc/src/dlpc.py` and `draft/test_dlpc/src/run_dlpc_compare.py`:
+
+1. Fixed closure bug in `patch_qwen3_attention_layers()`:
+   - Bound per-layer loop variable via default arg `__layer_idx=layer_idx`.
+   - Replaced `layer_idx` usage inside patched forward with `__layer_idx`.
+   - Prevents cross-layer memory mixup and decode-step drift.
+
+2. Added schema-only support text for prefix construction:
+   - New flag `--schema-only-prefix`.
+   - Prefix is built from schema skeleton instead of full support answer values.
+   - Avoids direct leakage of support OCR values into compressed memory.
+
+3. Added cache-key safety for prefix text mode:
+   - Cache now records and validates `prefix_text_mode` (`answer` vs `schema`).
+   - Prevents accidental reuse of stale prefix cache across incompatible modes.
+
+Minimum rerun set requested by feedback:
+
+- A0: `--beta 0.0` (key-only)
+- A1: `--beta 0.005` (key-only)
+- A2: `--beta 0.02` (key-only)
+- A3: `--beta 0.005 --inject-value-prefix --value-blend-lambda 0.005`
+
+Output logs:
+- `draft/test_dlpc/results/compare_dlpc_a0_noop.json`
+- `draft/test_dlpc/results/compare_dlpc_a1_key_weak.json`
+- `draft/test_dlpc/results/compare_dlpc_a2_key_moderate.json`
+- `draft/test_dlpc/results/compare_dlpc_a3_value_very_weak.json`
+
+Observed summary from these four runs:
+- DLPC latency remains lower than naive baseline.
+- `beta=0.0` still differs from naive output quality, indicating side effects beyond beta-only steering.
+- Across A0-A3, schema-level rates are stable in this sample:
+  - DLPC `leaf_presence_rate`: `0.9211`
+  - DLPC `leaf_non_empty_rate`: `0.7105`
+  - Naive baseline: `1.0` and `0.8421`
+

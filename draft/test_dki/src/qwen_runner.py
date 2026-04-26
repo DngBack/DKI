@@ -115,17 +115,26 @@ class QwenVLRunner:
         return inputs.to(self.model.device)
 
     @torch.no_grad()
-    def generate(self, messages: List[Dict[str, Any]], max_new_tokens: int = 128) -> GenerationResult:
+    def generate(
+        self,
+        messages: List[Dict[str, Any]],
+        max_new_tokens: int = 128,
+        logits_processor=None,
+    ) -> GenerationResult:
         import time
 
         inputs = self._prepare_inputs(messages, add_generation_prompt=True)
         start = time.time()
+        generate_kwargs = {}
+        if logits_processor is not None:
+            generate_kwargs["logits_processor"] = logits_processor
         output_ids = self.model.generate(
             **inputs,
             max_new_tokens=max_new_tokens,
             do_sample=False,
             temperature=None,
             top_p=None,
+            **generate_kwargs,
         )
         elapsed = time.time() - start
         trimmed = [

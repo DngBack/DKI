@@ -1,10 +1,12 @@
 import json
+import re
 import types
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List
 
 import torch
+from transformers import LogitsProcessor, LogitsProcessorList
 
 from transformers.models.qwen3_vl.modeling_qwen3_vl import (
     ALL_ATTENTION_FUNCTIONS,
@@ -13,6 +15,14 @@ from transformers.models.qwen3_vl.modeling_qwen3_vl import (
 )
 
 from methods import build_demo_teacher_forcing_messages, build_dki_query_messages, get_decoder_layers
+
+
+def make_schema_skeleton(obj: Any):
+    if isinstance(obj, dict):
+        return {k: make_schema_skeleton(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [make_schema_skeleton(obj[0])] if obj else []
+    return ""
 
 
 def _extract_token_ids(tokenizer, candidates: List[str]) -> List[int]:
@@ -207,14 +217,15 @@ def build_dlpc_prefix_memory(
         for demo in demos:
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
+            prefix_text = demo.get("prefix_text", demo["text"])
             msgs = build_demo_teacher_forcing_messages(
                 image_path=demo["image"],
-                answer_text=demo["text"],
+                answer_text=prefix_text,
                 schema_obj=schema_obj,
             )
             inputs, outputs = wrapper.forward_teacher_forcing(msgs, output_attentions=True)
             image_indices = _get_image_token_indices(wrapper, inputs.input_ids)
-            answer_indices = _get_answer_token_indices(wrapper, inputs.input_ids, demo["text"])
+            answer_indices = _get_answer_token_indices(wrapper, inputs.input_ids, prefix_text)
             text_indices = answer_indices[: min(top_n_text, len(answer_indices))]
             for layer_idx in target_layers:
                 selected_visual = _select_top_visual_tokens_from_attention(
@@ -282,11 +293,20 @@ class DLPCController:
     value_beta_scale: float = 0.1
     key_phase_tokens: int = 48
     positional_reset_prefix: bool = True
+    field_gated_injection: bool = False
     decode_step: int = 0
+    generated_text: str = ""
+    current_field: str | None = None
+    inside_value_state: bool = False
+    last_token_text: str = ""
+    tokenizer: Any = None
+    prefix_mass_logs: List[Dict[str, Any]] = None
 
     def __post_init__(self):
         if self.memory_by_layer is None:
             self.memory_by_layer = {}
+        if self.prefix_mass_logs is None:
+            self.prefix_mass_logs = []
 
     def set_memory(
         self,
@@ -297,6 +317,8 @@ class DLPCController:
         value_beta_scale: float = 0.1,
         key_phase_tokens: int = 48,
         positional_reset_prefix: bool = True,
+        field_gated_injection: bool = False,
+        tokenizer: Any = None,
     ):
         self.memory_by_layer = memory_by_layer
         self.beta = beta
@@ -305,10 +327,17 @@ class DLPCController:
         self.value_beta_scale = value_beta_scale
         self.key_phase_tokens = key_phase_tokens
         self.positional_reset_prefix = positional_reset_prefix
+        self.field_gated_injection = field_gated_injection
+        self.tokenizer = tokenizer
 
     def enable(self):
         self.enabled = True
         self.decode_step = 0
+        self.generated_text = ""
+        self.current_field = None
+        self.inside_value_state = False
+        self.last_token_text = ""
+        self.prefix_mass_logs = []
 
     def disable(self):
         self.enabled = False
@@ -320,6 +349,47 @@ class DLPCController:
         if self.decode_step < self.key_phase_tokens:
             return self.beta
         return self.beta * self.value_beta_scale
+
+    def should_inject_now(self) -> bool:
+        if not self.field_gated_injection:
+            return True
+        return self.inside_value_state and bool(self.current_field)
+
+    def on_generated_token(self, token_id: int) -> None:
+        if self.tokenizer is None:
+            return
+        piece = self.tokenizer.decode([token_id], skip_special_tokens=False, clean_up_tokenization_spaces=False)
+        self.last_token_text = piece
+        self.generated_text += piece
+        self._update_json_state()
+
+    def _update_json_state(self) -> None:
+        text = self.generated_text
+        last_colon = text.rfind(":")
+        last_sep = max(text.rfind(","), text.rfind("}"), text.rfind("]"))
+        self.inside_value_state = last_colon > last_sep
+        if last_colon < 0:
+            self.current_field = None
+            return
+        key_matches = list(re.finditer(r'"([^"\\]*(?:\\.[^"\\]*)*)"\s*:', text[: last_colon + 1]))
+        if not key_matches:
+            self.current_field = None
+            return
+        self.current_field = key_matches[-1].group(1)
+
+
+class _ControllerStateLogitsProcessor(LogitsProcessor):
+    def __init__(self, controller: DLPCController):
+        self.controller = controller
+        self.last_seen_len = 0
+
+    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor) -> torch.FloatTensor:
+        seq_len = input_ids.shape[1]
+        if seq_len > self.last_seen_len:
+            token_id = int(input_ids[0, -1].item())
+            self.controller.on_generated_token(token_id)
+            self.last_seen_len = seq_len
+        return scores
 
 
 def patch_qwen3_attention_layers(model, controller: DLPCController, target_layers: List[int]):
@@ -336,6 +406,7 @@ def patch_qwen3_attention_layers(model, controller: DLPCController, target_layer
             position_embeddings,
             attention_mask: torch.Tensor | None,
             past_key_values=None,
+            __layer_idx=layer_idx,
             **kwargs,
         ):
             input_shape = hidden_states.shape[:-1]
@@ -352,8 +423,13 @@ def patch_qwen3_attention_layers(model, controller: DLPCController, target_layer
 
             mem_len = 0
             is_decode_step = past_key_values is not None and hidden_states.shape[1] == 1
-            if controller.enabled and is_decode_step and layer_idx in controller.memory_by_layer:
-                mem = controller.memory_by_layer[layer_idx]
+            if (
+                controller.enabled
+                and is_decode_step
+                and controller.should_inject_now()
+                and __layer_idx in controller.memory_by_layer
+            ):
+                mem = controller.memory_by_layer[__layer_idx]
                 mem_k = mem["key"].to(device=key_states.device, dtype=key_states.dtype)
                 mem_v = mem["value"].to(device=value_states.device, dtype=value_states.dtype)
                 bsz = key_states.shape[0]
@@ -406,7 +482,29 @@ def patch_qwen3_attention_layers(model, controller: DLPCController, target_layer
             )
             attn_output = attn_output.reshape(*input_shape, -1).contiguous()
             attn_output = self.o_proj(attn_output)
-            if controller.enabled and is_decode_step and layer_idx == target_layers[-1]:
+            if controller.enabled and is_decode_step and mem_len > 0 and attn_weights is not None:
+                try:
+                    prefix_mass = (
+                        attn_weights[:, :, :, :mem_len]
+                        .sum(dim=-1)
+                        .mean()
+                        .detach()
+                        .float()
+                        .item()
+                    )
+                    controller.prefix_mass_logs.append(
+                        {
+                            "layer": __layer_idx,
+                            "decode_step": int(controller.decode_step),
+                            "prefix_mass": float(prefix_mass),
+                            "current_generated_token": controller.last_token_text,
+                            "current_field": controller.current_field,
+                            "inside_value_state": bool(controller.inside_value_state),
+                        }
+                    )
+                except Exception:
+                    pass
+            if controller.enabled and is_decode_step and __layer_idx == target_layers[-1]:
                 controller.decode_step += 1
             return attn_output, attn_weights
 
@@ -431,6 +529,7 @@ def run_dlpc_inference(
     value_beta_scale: float,
     key_phase_tokens: int,
     positional_reset_prefix: bool,
+    field_gated_injection: bool,
     max_new_tokens: int,
 ):
     controller = DLPCController()
@@ -442,14 +541,17 @@ def run_dlpc_inference(
         value_beta_scale=value_beta_scale,
         key_phase_tokens=key_phase_tokens,
         positional_reset_prefix=positional_reset_prefix,
+        field_gated_injection=field_gated_injection,
+        tokenizer=wrapper.processor.tokenizer,
     )
     restore_patch = patch_qwen3_attention_layers(wrapper.model, controller, target_layers=target_layers)
     try:
         msgs = build_dki_query_messages(query_image, schema_obj=schema_obj)
         controller.enable()
-        out = wrapper.generate(msgs, max_new_tokens=max_new_tokens)
+        logits_processor = LogitsProcessorList([_ControllerStateLogitsProcessor(controller)])
+        out = wrapper.generate(msgs, max_new_tokens=max_new_tokens, logits_processor=logits_processor)
         controller.disable()
-        return out
+        return out, controller.prefix_mass_logs
     finally:
         restore_patch()
 
@@ -463,6 +565,7 @@ def save_prefix_cache(
     top_n_text: int,
     prefix_len: int,
     compressor_mode: str,
+    prefix_text_mode: str,
     memory_by_layer: Dict[int, Dict[str, torch.Tensor]],
 ) -> None:
     payload = {
@@ -474,6 +577,7 @@ def save_prefix_cache(
         "top_n_text": top_n_text,
         "prefix_len": prefix_len,
         "compressor_mode": compressor_mode,
+        "prefix_text_mode": prefix_text_mode,
         "memory_by_layer": {str(k): {"key": v["key"].cpu(), "value": v["value"].cpu()} for k, v in memory_by_layer.items()},
     }
     path = Path(cache_path)
@@ -490,6 +594,7 @@ def load_prefix_cache(
     top_n_text: int,
     prefix_len: int,
     compressor_mode: str,
+    prefix_text_mode: str,
 ) -> Dict[int, Dict[str, torch.Tensor]]:
     payload = torch.load(cache_path, map_location="cpu")
     if payload.get("version") != 1:
@@ -504,5 +609,7 @@ def load_prefix_cache(
         raise ValueError("Prefix cache token selection mismatch")
     if payload.get("prefix_len") != prefix_len or payload.get("compressor_mode") != compressor_mode:
         raise ValueError("Prefix cache compressor config mismatch")
+    if payload.get("prefix_text_mode", "answer") != prefix_text_mode:
+        raise ValueError("Prefix cache text mode mismatch")
     return {int(k): {"key": v["key"], "value": v["value"]} for k, v in payload["memory_by_layer"].items()}
 
