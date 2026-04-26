@@ -1,0 +1,1391 @@
+{
+  "config": {
+    "model_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "demo_pdf": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.pdf",
+    "demo_json": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.json",
+    "query_pdf": "data/test/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_test_1.pdf",
+    "query_gt_json": "data/test/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_test_1.json",
+    "shots": 1,
+    "max_pixels": 401408,
+    "naive_max_new_tokens": 1024,
+    "field_max_new_tokens": 384,
+    "extract_max_new_tokens": 256,
+    "verify_max_new_tokens": 384,
+    "confidence_threshold": 0.5,
+    "demo_evidence_from_image": false,
+    "output": "sef_icl/results/compare_naive_vs_sef.json",
+    "schema_json": "data/samples/giay_gui_tien_tiet_kiem/giay_gui_tien_tiet_kiem_1.json"
+  },
+  "summary": {
+    "naive_schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 38,
+      "leaf_presence_rate": 1.0,
+      "leaf_non_empty_in_aligned": 32,
+      "leaf_non_empty_rate": 0.8421052631578947
+    },
+    "sef_schema_metrics": {
+      "leaf_total": 38,
+      "leaf_present_in_raw_pred": 38,
+      "leaf_presence_rate": 1.0,
+      "leaf_non_empty_in_aligned": 38,
+      "leaf_non_empty_rate": 1.0
+    },
+    "naive_value_match": {
+      "leaf_exact_match_count": 34,
+      "leaf_exact_match_rate": 0.8947368421052632,
+      "leaf_total": 38
+    },
+    "sef_value_match": {
+      "leaf_exact_match_count": 19,
+      "leaf_exact_match_rate": 0.5,
+      "leaf_total": 38
+    },
+    "timings": {
+      "naive_sec": 39.00193190574646,
+      "sef_total_sec": 306.52883529663086,
+      "sef_field_passes_sec": 267.1941125392914
+    }
+  },
+  "naive_aligned_json": {
+    "Title": "GIẤY GỬI TIỀN TIẾT KIỆM",
+    "FreeText1": "Liên 1/2 dành cho Ngân hàng",
+    "Ngày (Date)": "05-01-2026",
+    "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+      "Tên khách hàng": "NGUYEN HONG SON",
+      "CMND/CCCD/HC": "001091034354",
+      "Ngày cấp": "10/10/2021",
+      "CIF": "11963933",
+      "Số tiền gửi": "5,000,000,000",
+      "Nơi cấp": "CUC CSQLHCVTTXH",
+      "Loại tiền": "VND",
+      "Số tiền bằng chữ": "Năm Tỷ đồng chan",
+      "Loại hình sản phẩm": "FD.DEPOSIT.AP.CK24M",
+      "Kỳ hạn": "6M",
+      "Định kỳ lĩnh lãi": "CUOI KY",
+      "Phương thức gửi tiền": "CHUYEN KHOAN",
+      "Tài khoản ghi nợ": "999919919999",
+      "Tài khoản nhận lãi": "",
+      "Phương thức quay vòng": "QUAY VONG GOC VA LAI"
+    },
+    "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+      "Table1": [
+        {
+          "Mệnh giá (Denomination)": "",
+          "Số tờ (Quantity)": "",
+          "Thành tiền (Amount)": ""
+        }
+      ],
+      "Tổng cộng (Total)": ""
+    },
+    "FreeText2": "Tôi xác nhận đã đọc, hiểu và cam đoan các thông tin trên là đúng theo yêu cầu của tôi\nCam kết tái tục theo sản phẩm ban hành",
+    "Người gửi tiền (ký, ghi rõ họ tên)": "Nguyễn Hồng Sơn",
+    "PHẦN DÀNH CHO NGÂN HÀNG": {
+      "Số bút toán": "AAACT26005XTHQDFPV",
+      "Số seri": "FDAB901345",
+      "Ngày mở": "05/01/2026",
+      "Salecode": "0029224",
+      "Company": "VN0010106",
+      "Lãi suất": "8(+2.20)",
+      "Ngày đến hạn": "06/07/2026",
+      "Table2": [
+        {
+          "Số tài khoản": "999919919999",
+          "Tên tài khoản": "NGUYEN HONG SON",
+          "Ghi nợ": "5,000,000,000",
+          "Ghi có": "",
+          "Loại tiền": "VND"
+        },
+        {
+          "Số tài khoản": "608585039117",
+          "Tên tài khoản": "NGUYEN HONG SON",
+          "Ghi nợ": "",
+          "Ghi có": "5,000,000,000",
+          "Loại tiền": "VND"
+        }
+      ]
+    },
+    "Giao dịch viên": "HOANNTQ.NCB 16:12\nNguyễn Thị Quỳnh Hoan",
+    "Kiểm soát viên": "Võ Thị Phương Thúy"
+  },
+  "sef_aligned_json": {
+    "Title": "GIẤY GỬI TIỀN TIẾT KIỆM",
+    "FreeText1": "NGUYỄN HỒNG SƠN",
+    "Ngày (Date)": "05-01-2026",
+    "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+      "Tên khách hàng": "NGUYEN HONG SON",
+      "CMND/CCCD/HC": "001091034354",
+      "Ngày cấp": "10/10/2021",
+      "CIF": "11963933",
+      "Số tiền gửi": "5.000.000.000",
+      "Nơi cấp": "CUC SCLHQV/TTXH",
+      "Loại tiền": "VND",
+      "Số tiền bằng chữ": "Năm mươi triệu đồng",
+      "Loại hình sản phẩm": "VND",
+      "Kỳ hạn": "6M",
+      "Định kỳ lĩnh lãi": "CUOI KY",
+      "Phương thức gửi tiền": "CHUYỂN KHOẢN",
+      "Tài khoản ghi nợ": "999919919999",
+      "Tài khoản nhận lãi": "999919919999",
+      "Phương thức quay vòng": "QUAY VONG GOC VA LAI"
+    },
+    "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+      "Table1": [
+        {
+          "Mệnh giá (Denomination)": "5.000.000.000",
+          "Số tờ (Quantity)": "5.000.000.000",
+          "Thành tiền (Amount)": "5.000.000.000"
+        }
+      ],
+      "Tổng cộng (Total)": "5.000.000.000"
+    },
+    "FreeText2": "5.000.000.000",
+    "Người gửi tiền (ký, ghi rõ họ tên)": "Nguyễn Hồng Sơn",
+    "PHẦN DÀNH CHO NGÂN HÀNG": {
+      "Số bút toán": "AAACT28005X7H0QDFPV",
+      "Số seri": "FDBA901345",
+      "Ngày mở": "05/01/2026",
+      "Salecode": "10029224",
+      "Company": "VN0010106",
+      "Lãi suất": "8.3%/20",
+      "Ngày đến hạn": "06/07/2026",
+      "Table2": [
+        {
+          "Số tài khoản": "0998919819998",
+          "Tên tài khoản": "NGUYEN HONG SON",
+          "Ghi nợ": "5,000,000,000",
+          "Ghi có": "5,000,000,000",
+          "Loại tiền": "VND"
+        }
+      ]
+    },
+    "Giao dịch viên": "HOANNTQ.NCB 16:12\nNguyễn Thị Quỳnh Hoan",
+    "Kiểm soát viên": "Võ Thị Phương Chiêu"
+  },
+  "full_log": {
+    "naive": {
+      "elapsed_sec": 39.00193190574646,
+      "output_text": "{\n  \"Title\": \"GIẤY GỬI TIỀN TIẾT KIỆM\",\n  \"FreeText1\": \"Liên 1/2 dành cho Ngân hàng\",\n  \"Ngày (Date)\": \"05-01-2026\",\n  \"THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG\": {\n    \"Tên khách hàng\": \"NGUYEN HONG SON\",\n    \"CMND/CCCD/HC\": \"001091034354\",\n    \"Ngày cấp\": \"10/10/2021\",\n    \"CIF\": \"11963933\",\n    \"Số tiền gửi\": \"5,000,000,000\",\n    \"Nơi cấp\": \"CUC CSQLHCVTTXH\",\n    \"Loại tiền\": \"VND\",\n    \"Số tiền bằng chữ\": \"Năm Tỷ đồng chan\",\n    \"Loại hình sản phẩm\": \"FD.DEPOSIT.AP.CK24M\",\n    \"Kỳ hạn\": \"6M\",\n    \"Định kỳ lĩnh lãi\": \"CUOI KY\",\n    \"Phương thức gửi tiền\": \"CHUYEN KHOAN\",\n    \"Tài khoản ghi nợ\": \"999919919999\",\n    \"Tài khoản nhận lãi\": \"\",\n    \"Phương thức quay vòng\": \"QUAY VONG GOC VA LAI\"\n  },\n  \"BẢNG KẺ TIỀN MẶT (CASH LIST)\": {\n    \"Table1\": [\n      {\n        \"Mệnh giá (Denomination)\": \"\",\n        \"Số tờ (Quantity)\": \"\",\n        \"Thành tiền (Amount)\": \"\"\n      }\n    ],\n    \"Tổng cộng (Total)\": \"\"\n  },\n  \"FreeText2\": \"Tôi xác nhận đã đọc, hiểu và cam đoan các thông tin trên là đúng theo yêu cầu của tôi\\nCam kết tái tục theo sản phẩm ban hành\",\n  \"Người gửi tiền (ký, ghi rõ họ tên)\": \"Nguyễn Hồng Sơn\",\n  \"PHẦN DÀNH CHO NGÂN HÀNG\": {\n    \"Số bút toán\": \"AAACT26005XTHQDFPV\",\n    \"Số seri\": \"FDAB901345\",\n    \"Ngày mở\": \"05/01/2026\",\n    \"Salecode\": \"0029224\",\n    \"Company\": \"VN0010106\",\n    \"Lãi suất\": \"8(+2.20)\",\n    \"Ngày đến hạn\": \"06/07/2026\",\n    \"Table2\": [\n      {\n        \"Số tài khoản\": \"999919919999\",\n        \"Tên tài khoản\": \"NGUYEN HONG SON\",\n        \"Ghi nợ\": \"5,000,000,000\",\n        \"Ghi có\": \"\",\n        \"Loại tiền\": \"VND\"\n      },\n      {\n        \"Số tài khoản\": \"608585039117\",\n        \"Tên tài khoản\": \"NGUYEN HONG SON\",\n        \"Ghi nợ\": \"\",\n        \"Ghi có\": \"5,000,000,000\",\n        \"Loại tiền\": \"VND\"\n      }\n    ]\n  },\n  \"Giao dịch viên\": \"HOANNTQ.NCB 16:12\\nNguyễn Thị Quỳnh Hoan\",\n  \"Kiểm soát viên\": \"Võ Thị Phương Thúy\"\n}",
+      "parsed_json": {
+        "Title": "GIẤY GỬI TIỀN TIẾT KIỆM",
+        "FreeText1": "Liên 1/2 dành cho Ngân hàng",
+        "Ngày (Date)": "05-01-2026",
+        "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+          "Tên khách hàng": "NGUYEN HONG SON",
+          "CMND/CCCD/HC": "001091034354",
+          "Ngày cấp": "10/10/2021",
+          "CIF": "11963933",
+          "Số tiền gửi": "5,000,000,000",
+          "Nơi cấp": "CUC CSQLHCVTTXH",
+          "Loại tiền": "VND",
+          "Số tiền bằng chữ": "Năm Tỷ đồng chan",
+          "Loại hình sản phẩm": "FD.DEPOSIT.AP.CK24M",
+          "Kỳ hạn": "6M",
+          "Định kỳ lĩnh lãi": "CUOI KY",
+          "Phương thức gửi tiền": "CHUYEN KHOAN",
+          "Tài khoản ghi nợ": "999919919999",
+          "Tài khoản nhận lãi": "",
+          "Phương thức quay vòng": "QUAY VONG GOC VA LAI"
+        },
+        "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+          "Table1": [
+            {
+              "Mệnh giá (Denomination)": "",
+              "Số tờ (Quantity)": "",
+              "Thành tiền (Amount)": ""
+            }
+          ],
+          "Tổng cộng (Total)": ""
+        },
+        "FreeText2": "Tôi xác nhận đã đọc, hiểu và cam đoan các thông tin trên là đúng theo yêu cầu của tôi\nCam kết tái tục theo sản phẩm ban hành",
+        "Người gửi tiền (ký, ghi rõ họ tên)": "Nguyễn Hồng Sơn",
+        "PHẦN DÀNH CHO NGÂN HÀNG": {
+          "Số bút toán": "AAACT26005XTHQDFPV",
+          "Số seri": "FDAB901345",
+          "Ngày mở": "05/01/2026",
+          "Salecode": "0029224",
+          "Company": "VN0010106",
+          "Lãi suất": "8(+2.20)",
+          "Ngày đến hạn": "06/07/2026",
+          "Table2": [
+            {
+              "Số tài khoản": "999919919999",
+              "Tên tài khoản": "NGUYEN HONG SON",
+              "Ghi nợ": "5,000,000,000",
+              "Ghi có": "",
+              "Loại tiền": "VND"
+            },
+            {
+              "Số tài khoản": "608585039117",
+              "Tên tài khoản": "NGUYEN HONG SON",
+              "Ghi nợ": "",
+              "Ghi có": "5,000,000,000",
+              "Loại tiền": "VND"
+            }
+          ]
+        },
+        "Giao dịch viên": "HOANNTQ.NCB 16:12\nNguyễn Thị Quỳnh Hoan",
+        "Kiểm soát viên": "Võ Thị Phương Thúy"
+      },
+      "aligned_json": {
+        "Title": "GIẤY GỬI TIỀN TIẾT KIỆM",
+        "FreeText1": "Liên 1/2 dành cho Ngân hàng",
+        "Ngày (Date)": "05-01-2026",
+        "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+          "Tên khách hàng": "NGUYEN HONG SON",
+          "CMND/CCCD/HC": "001091034354",
+          "Ngày cấp": "10/10/2021",
+          "CIF": "11963933",
+          "Số tiền gửi": "5,000,000,000",
+          "Nơi cấp": "CUC CSQLHCVTTXH",
+          "Loại tiền": "VND",
+          "Số tiền bằng chữ": "Năm Tỷ đồng chan",
+          "Loại hình sản phẩm": "FD.DEPOSIT.AP.CK24M",
+          "Kỳ hạn": "6M",
+          "Định kỳ lĩnh lãi": "CUOI KY",
+          "Phương thức gửi tiền": "CHUYEN KHOAN",
+          "Tài khoản ghi nợ": "999919919999",
+          "Tài khoản nhận lãi": "",
+          "Phương thức quay vòng": "QUAY VONG GOC VA LAI"
+        },
+        "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+          "Table1": [
+            {
+              "Mệnh giá (Denomination)": "",
+              "Số tờ (Quantity)": "",
+              "Thành tiền (Amount)": ""
+            }
+          ],
+          "Tổng cộng (Total)": ""
+        },
+        "FreeText2": "Tôi xác nhận đã đọc, hiểu và cam đoan các thông tin trên là đúng theo yêu cầu của tôi\nCam kết tái tục theo sản phẩm ban hành",
+        "Người gửi tiền (ký, ghi rõ họ tên)": "Nguyễn Hồng Sơn",
+        "PHẦN DÀNH CHO NGÂN HÀNG": {
+          "Số bút toán": "AAACT26005XTHQDFPV",
+          "Số seri": "FDAB901345",
+          "Ngày mở": "05/01/2026",
+          "Salecode": "0029224",
+          "Company": "VN0010106",
+          "Lãi suất": "8(+2.20)",
+          "Ngày đến hạn": "06/07/2026",
+          "Table2": [
+            {
+              "Số tài khoản": "999919919999",
+              "Tên tài khoản": "NGUYEN HONG SON",
+              "Ghi nợ": "5,000,000,000",
+              "Ghi có": "",
+              "Loại tiền": "VND"
+            },
+            {
+              "Số tài khoản": "608585039117",
+              "Tên tài khoản": "NGUYEN HONG SON",
+              "Ghi nợ": "",
+              "Ghi có": "5,000,000,000",
+              "Loại tiền": "VND"
+            }
+          ]
+        },
+        "Giao dịch viên": "HOANNTQ.NCB 16:12\nNguyễn Thị Quỳnh Hoan",
+        "Kiểm soát viên": "Võ Thị Phương Thúy"
+      },
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 32,
+        "leaf_non_empty_rate": 0.8421052631578947
+      },
+      "value_match_metrics": {
+        "leaf_exact_match_count": 34,
+        "leaf_exact_match_rate": 0.8947368421052632,
+        "leaf_total": 38
+      }
+    },
+    "sef": {
+      "aligned_json": {
+        "Title": "GIẤY GỬI TIỀN TIẾT KIỆM",
+        "FreeText1": "NGUYỄN HỒNG SƠN",
+        "Ngày (Date)": "05-01-2026",
+        "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG": {
+          "Tên khách hàng": "NGUYEN HONG SON",
+          "CMND/CCCD/HC": "001091034354",
+          "Ngày cấp": "10/10/2021",
+          "CIF": "11963933",
+          "Số tiền gửi": "5.000.000.000",
+          "Nơi cấp": "CUC SCLHQV/TTXH",
+          "Loại tiền": "VND",
+          "Số tiền bằng chữ": "Năm mươi triệu đồng",
+          "Loại hình sản phẩm": "VND",
+          "Kỳ hạn": "6M",
+          "Định kỳ lĩnh lãi": "CUOI KY",
+          "Phương thức gửi tiền": "CHUYỂN KHOẢN",
+          "Tài khoản ghi nợ": "999919919999",
+          "Tài khoản nhận lãi": "999919919999",
+          "Phương thức quay vòng": "QUAY VONG GOC VA LAI"
+        },
+        "BẢNG KẺ TIỀN MẶT (CASH LIST)": {
+          "Table1": [
+            {
+              "Mệnh giá (Denomination)": "5.000.000.000",
+              "Số tờ (Quantity)": "5.000.000.000",
+              "Thành tiền (Amount)": "5.000.000.000"
+            }
+          ],
+          "Tổng cộng (Total)": "5.000.000.000"
+        },
+        "FreeText2": "5.000.000.000",
+        "Người gửi tiền (ký, ghi rõ họ tên)": "Nguyễn Hồng Sơn",
+        "PHẦN DÀNH CHO NGÂN HÀNG": {
+          "Số bút toán": "AAACT28005X7H0QDFPV",
+          "Số seri": "FDBA901345",
+          "Ngày mở": "05/01/2026",
+          "Salecode": "10029224",
+          "Company": "VN0010106",
+          "Lãi suất": "8.3%/20",
+          "Ngày đến hạn": "06/07/2026",
+          "Table2": [
+            {
+              "Số tài khoản": "0998919819998",
+              "Tên tài khoản": "NGUYEN HONG SON",
+              "Ghi nợ": "5,000,000,000",
+              "Ghi có": "5,000,000,000",
+              "Loại tiền": "VND"
+            }
+          ]
+        },
+        "Giao dịch viên": "HOANNTQ.NCB 16:12\nNguyễn Thị Quỳnh Hoan",
+        "Kiểm soát viên": "Võ Thị Phương Chiêu"
+      },
+      "schema_metrics": {
+        "leaf_total": 38,
+        "leaf_present_in_raw_pred": 38,
+        "leaf_presence_rate": 1.0,
+        "leaf_non_empty_in_aligned": 38,
+        "leaf_non_empty_rate": 1.0
+      },
+      "per_field": [
+        {
+          "field_path": "Title",
+          "evidence": {
+            "evidence_text": "GIÁY GỬI TIỀN TIẾT KIỆM",
+            "nearby_labels": [],
+            "confidence": 0.9,
+            "raw": "{\n  \"evidence_text\": \"GIÁY GỬI TIỀN TIẾT KIỆM\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.9\n}"
+          },
+          "extract": {
+            "value": "GIẤY GỬI TIỀN TIẾT KIỆM",
+            "raw": "GIẤY GỬI TIỀN TIẾT KIỆM"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "GIẤY GỬI TIỀN TIẾT KIỆM",
+            "reason": "The predicted value 'GIẤY GỬI TIỀN TIẾT KIỆM' matches exactly with the evidence in the document's title section.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The predicted value 'GIẤY GỬI TIỀN TIẾT KIỆM' matches exactly with the evidence in the document's title section.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "GIẤY GỬI TIỀN TIẾT KIỆM",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "FreeText1",
+          "evidence": {
+            "evidence_text": "Nguyễn Hồng Sơn",
+            "nearby_labels": [],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Nguyễn Hồng Sơn\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "NGUYỄN HỒNG SƠN",
+            "raw": "NGUYỄN HỒNG SƠN"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "NGUYỄN HỒNG SƠN",
+            "reason": "The predicted value 'NGUYỄN HỒNG SƠN' matches the evidence 'Nguyễn Hồng Sơn' as they are the same name, with minor capitalization differences that do not affect identity.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The predicted value 'NGUYỄN HỒNG SƠN' matches the evidence 'Nguyễn Hồng Sơn' as they are the same name, with minor capitalization differences that do not affect identity.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "NGUYỄN HỒNG SƠN",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "Ngày (Date)",
+          "evidence": {
+            "evidence_text": "05-01-2026",
+            "nearby_labels": [
+              "Ngày (Date)"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"05-01-2026\",\n  \"nearby_labels\": [\n    \"Ngày (Date)\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "05-01-2026",
+            "raw": "05-01-2026"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "05-01-2026",
+            "reason": "The evidence explicitly states 'Ngày (Date): 05-01-2026', which matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Ngày (Date): 05-01-2026', which matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "05-01-2026",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Tên khách hàng",
+          "evidence": {
+            "evidence_text": "NGUYEN HONG SON",
+            "nearby_labels": [
+              "Tên khách hàng:",
+              "CIF: 11963933"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"NGUYEN HONG SON\",\n  \"nearby_labels\": [\n    \"Tên khách hàng:\",\n    \"CIF: 11963933\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "NGUYEN HONG SON",
+            "raw": "NGUYEN HONG SON"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "NGUYEN HONG SON",
+            "reason": "The field 'THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Tên khách hàng' is directly followed by 'NGUYEN HONG SON' in the document, which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The field 'THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Tên khách hàng' is directly followed by 'NGUYEN HONG SON' in the document, which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "NGUYEN HONG SON",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.CMND/CCCD/HC",
+          "evidence": {
+            "evidence_text": "cMND/CCCD/HC: 001091034354",
+            "nearby_labels": [
+              "Tên khách hàng: NGUYEN HONG SON"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"cMND/CCCD/HC: 001091034354\",\n  \"nearby_labels\": [\n    \"Tên khách hàng: NGUYEN HONG SON\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "001091034354",
+            "raw": "001091034354"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "001091034354",
+            "reason": "The evidence explicitly states 'cMND/CCCD/HC: 001091034354', which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'cMND/CCCD/HC: 001091034354', which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "001091034354",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Ngày cấp",
+          "evidence": {
+            "evidence_text": "Ngày cấp: 10/10/2021",
+            "nearby_labels": [
+              "Tên khách hàng:",
+              "Số tiền gửi:",
+              "Số tiền gửi ghi trên:"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Ngày cấp: 10/10/2021\",\n  \"nearby_labels\": [\n    \"Tên khách hàng:\",\n    \"Số tiền gửi:\",\n    \"Số tiền gửi ghi trên:\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "10/10/2021",
+            "raw": "10/10/2021"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "10/10/2021",
+            "reason": "The evidence explicitly states 'Ngày cấp: 10/10/2021', which directly matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Ngày cấp: 10/10/2021', which directly matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "10/10/2021",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.CIF",
+          "evidence": {
+            "evidence_text": "CIF: 11963933",
+            "nearby_labels": [
+              "Tên khách hàng: NGUYEN HONG SON"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"CIF: 11963933\",\n  \"nearby_labels\": [\n    \"Tên khách hàng: NGUYEN HONG SON\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "11963933",
+            "raw": "11963933"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "11963933",
+            "reason": "The evidence explicitly states 'CIF: 11963933', which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'CIF: 11963933', which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "11963933",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Số tiền gửi",
+          "evidence": {
+            "evidence_text": "5.000.000.000",
+            "nearby_labels": [
+              "Số tiền gửi"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5.000.000.000\",\n  \"nearby_labels\": [\n    \"Số tiền gửi\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5.000.000.000",
+            "raw": "5.000.000.000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5.000.000.000",
+            "reason": "The field 'Số tiền gửi' in the form explicitly states '5.000.000.000', which matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The field 'Số tiền gửi' in the form explicitly states '5.000.000.000', which matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "5.000.000.000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Nơi cấp",
+          "evidence": {
+            "evidence_text": "CUC SCLHQV/TTXH",
+            "nearby_labels": [
+              "Nơi cấp:"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"CUC SCLHQV/TTXH\",\n  \"nearby_labels\": [\n    \"Nơi cấp:\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "CUC SCLHQV/TTXH",
+            "raw": "CUC SCLHQV/TTXH"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "CUC SCLHQV/TTXH",
+            "reason": "The evidence directly states 'CUC SCLHQV/TTXH' under the 'Nơi cấp' field in the customer information section.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence directly states 'CUC SCLHQV/TTXH' under the 'Nơi cấp' field in the customer information section.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "CUC SCLHQV/TTXH",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Loại tiền",
+          "evidence": {
+            "evidence_text": "Loại tiền: VND",
+            "nearby_labels": [
+              "Số tiền gửi: 5.000.000.000",
+              "Số tiền gửi: 5.000.000.000"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Loại tiền: VND\",\n  \"nearby_labels\": [\n    \"Số tiền gửi: 5.000.000.000\",\n    \"Số tiền gửi: 5.000.000.000\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "VND",
+            "raw": "VND"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "VND",
+            "reason": "The evidence explicitly states 'Loại tiền: VND', which directly matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Loại tiền: VND', which directly matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "VND",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Số tiền bằng chữ",
+          "evidence": {
+            "evidence_text": "Năm mươi triệu đồng",
+            "nearby_labels": [],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Năm mươi triệu đồng\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "Năm mươi triệu đồng",
+            "raw": "Năm mươi triệu đồng"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "Năm mươi triệu đồng",
+            "reason": "The evidence directly states 'Năm mươi triệu đồng', which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence directly states 'Năm mươi triệu đồng', which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "Năm mươi triệu đồng",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Loại hình sản phẩm",
+          "evidence": {
+            "evidence_text": "Loại hình: VND",
+            "nearby_labels": [
+              "Loại tiền: VND"
+            ],
+            "confidence": 0.9,
+            "raw": "{\n  \"evidence_text\": \"Loại hình: VND\",\n  \"nearby_labels\": [\n    \"Loại tiền: VND\"\n  ],\n  \"confidence\": 0.9\n}"
+          },
+          "extract": {
+            "value": "VND",
+            "raw": "VND"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "VND",
+            "reason": "The evidence explicitly states 'Loại hình: VND' under the customer information section, directly matching the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Loại hình: VND' under the customer information section, directly matching the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "VND",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Kỳ hạn",
+          "evidence": {
+            "evidence_text": "Kỳ hạn: 6M",
+            "nearby_labels": [
+              "Số tiền gửi: 5.000.000.000",
+              "Số tiền gửi: 5.000.000.000"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Kỳ hạn: 6M\",\n  \"nearby_labels\": [\n    \"Số tiền gửi: 5.000.000.000\",\n    \"Số tiền gửi: 5.000.000.000\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "6M",
+            "raw": "6M"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "6M",
+            "reason": "The evidence explicitly states 'Kỳ hạn: 6M', which directly matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Kỳ hạn: 6M', which directly matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "6M",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Định kỳ lĩnh lãi",
+          "evidence": {
+            "evidence_text": "Định kỳ lĩnh lãi: CUOCI KY",
+            "nearby_labels": [],
+            "confidence": 0.9,
+            "raw": "{\n  \"evidence_text\": \"Định kỳ lĩnh lãi: CUOCI KY\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.9\n}"
+          },
+          "extract": {
+            "value": "CUOI KY",
+            "raw": "CUOI KY"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "CUOI KY",
+            "reason": "The evidence explicitly states 'Định kỳ lĩnh lãi: CUOCI KY', which matches the predicted value 'CUOI KY'. The slight spelling difference is likely due to OCR or typographical error, but the intent is clear.",
+            "confidence": 0.98,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Định kỳ lĩnh lãi: CUOCI KY', which matches the predicted value 'CUOI KY'. The slight spelling difference is likely due to OCR or typographical error, but the intent is clear.\",\n  \"confidence\": 0.98\n}"
+          },
+          "fusion": {
+            "final_value": "CUOI KY",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Phương thức gửi tiền",
+          "evidence": {
+            "evidence_text": "Phương thức gửi tiền: CHUYỂN KHOẢN",
+            "nearby_labels": [
+              "Tài khoản ghi nợ: 999919919999",
+              "Tài khoản nhận lãi: "
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Phương thức gửi tiền: CHUYỂN KHOẢN\",\n  \"nearby_labels\": [\n    \"Tài khoản ghi nợ: 999919919999\",\n    \"Tài khoản nhận lãi: \"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "CHUYỂN KHOẢN",
+            "raw": "CHUYỂN KHOẢN"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "CHUYỂN KHOẢN",
+            "reason": "The evidence explicitly states 'Phương thức gửi tiền: CHUYỂN KHOẢN', which directly matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Phương thức gửi tiền: CHUYỂN KHOẢN', which directly matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "CHUYỂN KHOẢN",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Tài khoản ghi nợ",
+          "evidence": {
+            "evidence_text": "999919919999",
+            "nearby_labels": [
+              "Tài khoản ghi nợ:"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"999919919999\",\n  \"nearby_labels\": [\n    \"Tài khoản ghi nợ:\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "999919919999",
+            "raw": "999919919999"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "999919919999",
+            "reason": "The evidence directly states 'Tài khoản ghi nợ: 999919919999', which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence directly states 'Tài khoản ghi nợ: 999919919999', which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "999919919999",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Tài khoản nhận lãi",
+          "evidence": {
+            "evidence_text": "Tài khoản nhận lãi: 999919919999",
+            "nearby_labels": [
+              "Tài khoản ghi nhận: CHUYEN KHOAN",
+              "Tài khoản nhận lãi:"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Tài khoản nhận lãi: 999919919999\",\n  \"nearby_labels\": [\n    \"Tài khoản ghi nhận: CHUYEN KHOAN\",\n    \"Tài khoản nhận lãi:\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "999919919999",
+            "raw": "999919919999"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "999919919999",
+            "reason": "The evidence explicitly states 'Tài khoản nhận lãi: 999919919999', which directly matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Tài khoản nhận lãi: 999919919999', which directly matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "999919919999",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "THÔNG TIN YÊU CẦU CỦA KHÁCH HÀNG.Phương thức quay vòng",
+          "evidence": {
+            "evidence_text": "QUAY VONG GOC VA LAI",
+            "nearby_labels": [
+              "Tài khoản nhận lãi:",
+              "BANG KÉT TIỀN MẶT (CASH LIST)"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"QUAY VONG GOC VA LAI\",\n  \"nearby_labels\": [\n    \"Tài khoản nhận lãi:\",\n    \"BANG KÉT TIỀN MẶT (CASH LIST)\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "QUAY VONG GOC VA LAI",
+            "raw": "QUAY VONG GOC VA LAI"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "QUAY VONG GOC VA LAI",
+            "reason": "The evidence directly states 'QUAY VONG GOC VA LAI' under the field 'Phương thức quay vòng'.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence directly states 'QUAY VONG GOC VA LAI' under the field 'Phương thức quay vòng'.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "QUAY VONG GOC VA LAI",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "BẢNG KẺ TIỀN MẶT (CASH LIST).Table1[].Mệnh giá (Denomination)",
+          "evidence": {
+            "evidence_text": "5.000.000.000",
+            "nearby_labels": [
+              "Tổng cộng (Total)"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5.000.000.000\",\n  \"nearby_labels\": [\n    \"Tổng cộng (Total)\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5.000.000.000",
+            "raw": "5.000.000.000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5.000.000.000",
+            "reason": "The value '5.000.000.000' is directly listed in the 'Mệnh giá (Denomination)' column of the 'BẢNG KẺ TIỀN MẶT (CASH LIST)' table.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '5.000.000.000' is directly listed in the 'Mệnh giá (Denomination)' column of the 'BẢNG KẺ TIỀN MẶT (CASH LIST)' table.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "5.000.000.000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "BẢNG KẺ TIỀN MẶT (CASH LIST).Table1[].Số tờ (Quantity)",
+          "evidence": {
+            "evidence_text": "5.000.000.000",
+            "nearby_labels": [
+              "Số tờ (Quantity)"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5.000.000.000\",\n  \"nearby_labels\": [\n    \"Số tờ (Quantity)\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5.000.000.000",
+            "raw": "5.000.000.000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5.000.000.000",
+            "reason": "The value '5.000.000.000' is directly listed in the 'Số tờ (Quantity)' column of the BẢNG KẺ TIỀN MẶT (CASH LIST) table.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '5.000.000.000' is directly listed in the 'Số tờ (Quantity)' column of the BẢNG KẺ TIỀN MẶT (CASH LIST) table.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "5.000.000.000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "BẢNG KẺ TIỀN MẶT (CASH LIST).Table1[].Thành tiền (Amount)",
+          "evidence": {
+            "evidence_text": "5.000.000.000",
+            "nearby_labels": [
+              "Tổng cộng (Total)"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5.000.000.000\",\n  \"nearby_labels\": [\n    \"Tổng cộng (Total)\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5.000.000.000",
+            "raw": "5.000.000.000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5.000.000.000",
+            "reason": "The value '5.000.000.000' is directly listed in the 'Thành tiền (Amount)' column of the BẢNG KẺ TIỀN MẶT (CASH LIST) table.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '5.000.000.000' is directly listed in the 'Thành tiền (Amount)' column of the BẢNG KẺ TIỀN MẶT (CASH LIST) table.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "5.000.000.000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "BẢNG KẺ TIỀN MẶT (CASH LIST).Tổng cộng (Total)",
+          "evidence": {
+            "evidence_text": "5.000.000.000",
+            "nearby_labels": [
+              "Tổng cộng (Total)"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5.000.000.000\",\n  \"nearby_labels\": [\n    \"Tổng cộng (Total)\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5.000.000.000",
+            "raw": "5.000.000.000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5.000.000.000",
+            "reason": "The value '5.000.000.000' is directly listed in the 'Tổng cộng (Total)' field of the 'BẢNG KẺ TIỀN MẶT (CASH LIST)' section, matching the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '5.000.000.000' is directly listed in the 'Tổng cộng (Total)' field of the 'BẢNG KẺ TIỀN MẶT (CASH LIST)' section, matching the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "5.000.000.000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "FreeText2",
+          "evidence": {
+            "evidence_text": "5.000.000.000",
+            "nearby_labels": [],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5.000.000.000\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5.000.000.000",
+            "raw": "5.000.000.000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5.000.000.000",
+            "reason": "The value '5.000.000.000' is directly present in the evidence as the amount in the 'Tổng cộng (Total)' row of the table under 'Thành tiền (Amount)', which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '5.000.000.000' is directly present in the evidence as the amount in the 'Tổng cộng (Total)' row of the table under 'Thành tiền (Amount)', which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "5.000.000.000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "Người gửi tiền (ký, ghi rõ họ tên)",
+          "evidence": {
+            "evidence_text": "Người gửi tiền (ký, ghi rõ họ tên)",
+            "nearby_labels": [],
+            "confidence": 0.9,
+            "raw": "{\n  \"evidence_text\": \"Người gửi tiền (ký, ghi rõ họ tên)\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.9\n}"
+          },
+          "extract": {
+            "value": "Nguyễn Hồng Sơn",
+            "raw": "Nguyễn Hồng Sơn"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "Nguyễn Hồng Sơn",
+            "reason": "The signature and printed name 'Nguyễn Hồng Sơn' are clearly visible under the 'Người gửi tiền (ký, ghi rõ họ tên)' section, directly supporting the predicted value.",
+            "confidence": 0.98,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The signature and printed name 'Nguyễn Hồng Sơn' are clearly visible under the 'Người gửi tiền (ký, ghi rõ họ tên)' section, directly supporting the predicted value.\",\n  \"confidence\": 0.98\n}"
+          },
+          "fusion": {
+            "final_value": "Nguyễn Hồng Sơn",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Số bút toán",
+          "evidence": {
+            "evidence_text": "AAACT28005X7H0QDFPV",
+            "nearby_labels": [
+              "Số seri:",
+              "Company:"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"AAACT28005X7H0QDFPV\",\n  \"nearby_labels\": [\n    \"Số seri:\",\n    \"Company:\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "AAACT28005X7H0QDFPV",
+            "raw": "AAACT28005X7H0QDFPV"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "AAACT28005X7H0QDFPV",
+            "reason": "The evidence directly matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence directly matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "AAACT28005X7H0QDFPV",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Số seri",
+          "evidence": {
+            "evidence_text": "FDBA901345",
+            "nearby_labels": [
+              "Số seri:"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"FDBA901345\",\n  \"nearby_labels\": [\n    \"Số seri:\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "FDBA901345",
+            "raw": "FDBA901345"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "FDBA901345",
+            "reason": "The evidence directly states 'FDBA901345' under the 'Số seri' field in the 'PHẦN DÀNH CHO NGÂN HÀNG' section, matching the predicted value exactly.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence directly states 'FDBA901345' under the 'Số seri' field in the 'PHẦN DÀNH CHO NGÂN HÀNG' section, matching the predicted value exactly.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "FDBA901345",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Ngày mở",
+          "evidence": {
+            "evidence_text": "05/01/2026",
+            "nearby_labels": [
+              "Số tài khoản",
+              "Tên tài khoản",
+              "Ghi chú",
+              "Lợi tức"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"05/01/2026\",\n  \"nearby_labels\": [\n    \"Số tài khoản\",\n    \"Tên tài khoản\",\n    \"Ghi chú\",\n    \"Lợi tức\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "05/01/2026",
+            "raw": "05/01/2026"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "05/01/2026",
+            "reason": "The evidence directly states 'Ngày mở: 05/01/2026', which matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence directly states 'Ngày mở: 05/01/2026', which matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "05/01/2026",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Salecode",
+          "evidence": {
+            "evidence_text": "Salecode: 10029224",
+            "nearby_labels": [
+              "Số tài khoản",
+              "Tên tài khoản",
+              "Ghi chú",
+              "Lợi tức"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Salecode: 10029224\",\n  \"nearby_labels\": [\n    \"Số tài khoản\",\n    \"Tên tài khoản\",\n    \"Ghi chú\",\n    \"Lợi tức\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "10029224",
+            "raw": "10029224"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "10029224",
+            "reason": "The evidence explicitly states 'Salecode: 10029224', which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Salecode: 10029224', which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "10029224",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Company",
+          "evidence": {
+            "evidence_text": "Company: VN0010106",
+            "nearby_labels": [
+              "Số tài khoản",
+              "Tên tài khoản",
+              "Ghi chú",
+              "Lợi tức"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Company: VN0010106\",\n  \"nearby_labels\": [\n    \"Số tài khoản\",\n    \"Tên tài khoản\",\n    \"Ghi chú\",\n    \"Lợi tức\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "VN0010106",
+            "raw": "VN0010106"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "VN0010106",
+            "reason": "The evidence explicitly states 'Company: VN0010106', which matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Company: VN0010106', which matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "VN0010106",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Lãi suất",
+          "evidence": {
+            "evidence_text": "Lãi suất: 8.3%/20",
+            "nearby_labels": [
+              "Company: VN0010106",
+              "Ngày đến hạn: 06/07/2026"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Lãi suất: 8.3%/20\",\n  \"nearby_labels\": [\n    \"Company: VN0010106\",\n    \"Ngày đến hạn: 06/07/2026\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "8.3%/20",
+            "raw": "8.3%/20"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "8.3%/20",
+            "reason": "The evidence explicitly states 'Lãi suất: 8.3%/20', which matches the predicted value.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Lãi suất: 8.3%/20', which matches the predicted value.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "8.3%/20",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Ngày đến hạn",
+          "evidence": {
+            "evidence_text": "Ngày đến hạn: 06/07/2026",
+            "nearby_labels": [
+              "Company: VN0010106",
+              "Lãi suất: 8.3%/20",
+              "Số tài khoản"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Ngày đến hạn: 06/07/2026\",\n  \"nearby_labels\": [\n    \"Company: VN0010106\",\n    \"Lãi suất: 8.3%/20\",\n    \"Số tài khoản\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "06/07/2026",
+            "raw": "06/07/2026"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "06/07/2026",
+            "reason": "The evidence explicitly states 'Ngày đến hạn: 06/07/2026', which matches the predicted value.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Ngày đến hạn: 06/07/2026', which matches the predicted value.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "06/07/2026",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Table2[].Số tài khoản",
+          "evidence": {
+            "evidence_text": "0998919819998",
+            "nearby_labels": [
+              "Tên tài khoản",
+              "Ghi nhớ",
+              "Ghi chú",
+              "Loại tiền"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"0998919819998\",\n  \"nearby_labels\": [\n    \"Tên tài khoản\",\n    \"Ghi nhớ\",\n    \"Ghi chú\",\n    \"Loại tiền\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "0998919819998",
+            "raw": "0998919819998"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "0998919819998",
+            "reason": "The value '0998919819998' is directly listed in the 'Số tài khoản' column under the 'PHẦN DÀNH CHO NGÂN HÀNG' section of the document.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '0998919819998' is directly listed in the 'Số tài khoản' column under the 'PHẦN DÀNH CHO NGÂN HÀNG' section of the document.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "0998919819998",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Table2[].Tên tài khoản",
+          "evidence": {
+            "evidence_text": "NGUYEN HONG SON",
+            "nearby_labels": [
+              "Số tài khoản",
+              "Tên tài khoản",
+              "Ghi chú",
+              "Lợi tức"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"NGUYEN HONG SON\",\n  \"nearby_labels\": [\n    \"Số tài khoản\",\n    \"Tên tài khoản\",\n    \"Ghi chú\",\n    \"Lợi tức\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "NGUYEN HONG SON",
+            "raw": "NGUYEN HONG SON"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "NGUYEN HONG SON",
+            "reason": "The value 'NGUYEN HONG SON' in the 'Tên tài khoản' column of the table matches the evidence exactly.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value 'NGUYEN HONG SON' in the 'Tên tài khoản' column of the table matches the evidence exactly.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "NGUYEN HONG SON",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Table2[].Ghi nợ",
+          "evidence": {
+            "evidence_text": "5,000,000,000",
+            "nearby_labels": [
+              "Số tài khoản",
+              "Tên tài khoản",
+              "Ghi nợ",
+              "Ghi có",
+              "Loại tiền"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5,000,000,000\",\n  \"nearby_labels\": [\n    \"Số tài khoản\",\n    \"Tên tài khoản\",\n    \"Ghi nợ\",\n    \"Ghi có\",\n    \"Loại tiền\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5,000,000,000",
+            "raw": "5,000,000,000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5,000,000,000",
+            "reason": "The value '5,000,000,000' is directly present in the 'Ghi nợ' column under 'PHẦN DÀNH CHO NGÂN HÀNG.Table2[]'.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '5,000,000,000' is directly present in the 'Ghi nợ' column under 'PHẦN DÀNH CHO NGÂN HÀNG.Table2[]'.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "5,000,000,000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Table2[].Ghi có",
+          "evidence": {
+            "evidence_text": "5,000,000,000",
+            "nearby_labels": [
+              "Số tài khoản",
+              "Tên tài khoản",
+              "Ghi nợ",
+              "Ghi có",
+              "Lợi tức"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"5,000,000,000\",\n  \"nearby_labels\": [\n    \"Số tài khoản\",\n    \"Tên tài khoản\",\n    \"Ghi nợ\",\n    \"Ghi có\",\n    \"Lợi tức\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "5,000,000,000",
+            "raw": "5,000,000,000"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "5,000,000,000",
+            "reason": "The value '5,000,000,000' is directly present in the 'Ghi có' column of the table under 'PHẦN DÀNH CHO NGÂN HÀNG'.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The value '5,000,000,000' is directly present in the 'Ghi có' column of the table under 'PHẦN DÀNH CHO NGÂN HÀNG'.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "5,000,000,000",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "PHẦN DÀNH CHO NGÂN HÀNG.Table2[].Loại tiền",
+          "evidence": {
+            "evidence_text": "VND",
+            "nearby_labels": [
+              "Số tài khoản",
+              "Tên tài khoản",
+              "Ghi nợ",
+              "Ghi có"
+            ],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"VND\",\n  \"nearby_labels\": [\n    \"Số tài khoản\",\n    \"Tên tài khoản\",\n    \"Ghi nợ\",\n    \"Ghi có\"\n  ],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "VND",
+            "raw": "VND"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "VND",
+            "reason": "The field 'Loại tiền' in the 'PHẦN DÀNH CHO NGÂN HÀNG' section is explicitly stated as 'VND' in the document.",
+            "confidence": 1.0,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The field 'Loại tiền' in the 'PHẦN DÀNH CHO NGÂN HÀNG' section is explicitly stated as 'VND' in the document.\",\n  \"confidence\": 1.0\n}"
+          },
+          "fusion": {
+            "final_value": "VND",
+            "source": "sef"
+          }
+        },
+        {
+          "field_path": "Giao dịch viên",
+          "evidence": {
+            "evidence_text": "Nguyễn Thị Luận Hân",
+            "nearby_labels": [],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Nguyễn Thị Luận Hân\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "Nguyễn Thị Quỳnh Hoan",
+            "raw": "Nguyễn Thị Quỳnh Hoan"
+          },
+          "verify": {
+            "supported": false,
+            "corrected_value": "Nguyễn Thị Luận Hân",
+            "reason": "The evidence clearly states 'Nguyễn Thị Luận Hân' as the transaction officer, not 'Nguyễn Thị Quỳnh Hoan'.",
+            "confidence": 0.98,
+            "raw": "{\n  \"supported\": false,\n  \"corrected_value\": \"Nguyễn Thị Luận Hân\",\n  \"reason\": \"The evidence clearly states 'Nguyễn Thị Luận Hân' as the transaction officer, not 'Nguyễn Thị Quỳnh Hoan'.\",\n  \"confidence\": 0.98\n}"
+          },
+          "fusion": {
+            "final_value": "HOANNTQ.NCB 16:12\nNguyễn Thị Quỳnh Hoan",
+            "source": "naive"
+          }
+        },
+        {
+          "field_path": "Kiểm soát viên",
+          "evidence": {
+            "evidence_text": "Võ Thị Phương Chiêu",
+            "nearby_labels": [],
+            "confidence": 0.98,
+            "raw": "{\n  \"evidence_text\": \"Võ Thị Phương Chiêu\",\n  \"nearby_labels\": [],\n  \"confidence\": 0.98\n}"
+          },
+          "extract": {
+            "value": "Võ Thị Phương Chiêu",
+            "raw": "Võ Thị Phương Chiêu"
+          },
+          "verify": {
+            "supported": true,
+            "corrected_value": "Võ Thị Phương Chiêu",
+            "reason": "The evidence explicitly states 'Võ Thị Phương Chiêu' as the 'Kiểm soát viên' (Control Officer) signature.",
+            "confidence": 0.99,
+            "raw": "{\n  \"supported\": true,\n  \"corrected_value\": \"\",\n  \"reason\": \"The evidence explicitly states 'Võ Thị Phương Chiêu' as the 'Kiểm soát viên' (Control Officer) signature.\",\n  \"confidence\": 0.99\n}"
+          },
+          "fusion": {
+            "final_value": "Võ Thị Phương Chiêu",
+            "source": "sef"
+          }
+        }
+      ],
+      "field_passes_elapsed_sec": 267.1941125392914,
+      "total_elapsed_sec": 306.52883529663086,
+      "config": {
+        "confidence_threshold": 0.5,
+        "demo_evidence_from_image": false
+      },
+      "value_match_metrics": {
+        "leaf_exact_match_count": 19,
+        "leaf_exact_match_rate": 0.5,
+        "leaf_total": 38
+      }
+    }
+  }
+}

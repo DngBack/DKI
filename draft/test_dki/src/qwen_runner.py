@@ -33,9 +33,23 @@ class QwenVLRunner:
         self.processor = AutoProcessor.from_pretrained(model_name, max_pixels=max_pixels)
 
     @staticmethod
+    def _messages_with_list_content(messages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Qwen-VL expects multimodal `content` as a list of blocks; string content breaks path checks."""
+        out: List[Dict[str, Any]] = []
+        for msg in messages:
+            c = msg.get("content")
+            if isinstance(c, str):
+                out.append({**msg, "content": [{"type": "text", "text": c}]})
+            else:
+                out.append(msg)
+        return out
+
+    @staticmethod
     def _check_paths(messages: List[Dict[str, Any]]) -> None:
         for msg in messages:
             for item in msg.get("content", []):
+                if not isinstance(item, dict):
+                    continue
                 if item.get("type") == "image":
                     img_path = item.get("image")
                     if img_path and isinstance(img_path, str):
@@ -64,6 +78,8 @@ class QwenVLRunner:
         for msg in messages:
             new_content: List[Dict[str, Any]] = []
             for item in msg.get("content", []):
+                if not isinstance(item, dict):
+                    continue
                 if item.get("type") != "image":
                     new_content.append(item)
                     continue
@@ -80,6 +96,7 @@ class QwenVLRunner:
         return normalized
 
     def _prepare_inputs(self, messages: List[Dict[str, Any]], add_generation_prompt: bool):
+        messages = self._messages_with_list_content(messages)
         self._check_paths(messages)
         messages = self._normalize_media_messages(messages)
         text = self.processor.apply_chat_template(
